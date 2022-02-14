@@ -1,0 +1,80 @@
+parameters:
+  - name: Demo API Example
+    in: query
+    description: Demo API response
+    schema:
+      type: boolean
+get:
+  tags:
+    - GetUser
+  summary: Get user by user name
+  description: |
+    This API is used to get all the content of a particular User through the Username
+  operationId: getUser
+  parameters:
+    - name: username
+      in: path
+      description: The name that needs to get
+      required: true
+      schema:
+        type: string
+    - name: with_email
+      in: query
+      description: Search Email without filtering the email
+      schema:
+        type: boolean
+  security:
+    - main_auth:
+        - 'read:users'
+    - api_key: []
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Users.yaml
+          example:
+            username: pulkit
+            email: pulkit@gmail.com
+    '403':
+      description: Forbidden
+      $ref: ../components/responses/Problem.yaml
+    '404':
+      description: User not found
+      $ref: ../components/responses/Problem.yaml
+put:
+  tags:
+    - UpdateUserName
+  summary: Updated user
+  description: After logged in the user then only it can be done.
+  operationId: updtUsers
+  parameters:
+    - name: username
+      in: path
+      description: The name that needs to be updated
+      required: true
+      schema:
+        type: string
+  security:
+    - main_auth:
+        - 'write:users'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Users.yaml
+      application/xml:
+        schema:
+          $ref: ../components/schemas/Users.yaml
+    description: Updated user object
+    required: true
+  responses:
+    '200':
+      description: Success
+    '400':
+      description: Invalid user 
+      $ref: ../components/responses/Problem.yaml
+    '404':
+      description: User not found
+      $ref: ../components/responses/Problem.yaml
