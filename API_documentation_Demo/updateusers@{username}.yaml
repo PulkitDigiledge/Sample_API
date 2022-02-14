@@ -33,16 +33,14 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Users.yaml
+            $ref: Users.yaml
           example:
             username: pulkit
             email: pulkit@gmail.com
     '403':
       description: Forbidden
-      $ref: ../components/responses/Problem.yaml
     '404':
       description: User not found
-      $ref: ../components/responses/Problem.yaml
 put:
   tags:
     - UpdateUserName
@@ -63,10 +61,10 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/Users.yaml
+          $ref: Users.yaml
       application/xml:
         schema:
-          $ref: ../components/schemas/Users.yaml
+          $ref: Users.yaml
     description: Updated user object
     required: true
   responses:
@@ -74,7 +72,6 @@ put:
       description: Success
     '400':
       description: Invalid user 
-      $ref: ../components/responses/Problem.yaml
     '404':
       description: User not found
-      $ref: ../components/responses/Problem.yaml
+    
