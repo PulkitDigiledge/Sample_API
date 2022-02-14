@@ -33,16 +33,14 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Users.yaml
+            $ref: Users.yaml
           example:
             username: pulkit
             email: pulkit@gmail.com
     '403':
       description: Forbidden
-      $ref: ../components/responses/Problem.yaml
     '404':
       description: User not found
-      $ref: ../components/responses/Problem.yaml
 
 
 
